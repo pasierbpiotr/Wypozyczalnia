@@ -29,5 +29,13 @@ public class MainMenu extends JFrame {
                 movies.setVisible(true);
             }
         });
+
+        viewClientsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Clients clients = new Clients();
+                clients.setVisible(true);
+            }
+        });
     }
 }
