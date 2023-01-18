@@ -1,5 +1,3 @@
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +7,7 @@ public class MainMenu extends JFrame {
     private JButton viewMoviesButton;
     private JButton viewClientsButton;
     private JButton viewRentsButton;
+    private JButton exitButton;
 
     public static void main(String[] args) {
         MainMenu menu = new MainMenu();
@@ -19,7 +18,7 @@ public class MainMenu extends JFrame {
         super("Main menu");
         this.setContentPane(mainPanel);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(500,500);
+        this.setSize(300,300);
 
 
         viewMoviesButton.addActionListener(new ActionListener() {
@@ -35,6 +34,21 @@ public class MainMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Clients clients = new Clients();
                 clients.setVisible(true);
+            }
+        });
+
+        viewRentsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Rentals rentals = new Rentals();
+                rentals.setVisible(true);
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }
