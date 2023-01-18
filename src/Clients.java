@@ -42,13 +42,23 @@ public class Clients extends JFrame {
         addClientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[] client = {nameText.getText(),surnameText.getText(),address1Text.getText(),address2Text.getText(),pnumberText.getText()};
-                model.addRow(client);
-                nameText.setText("");
-                surnameText.setText("");
-                address1Text.setText("");
-                address2Text.setText("");
-                pnumberText.setText("");
+                String name = nameText.getText();
+                String surname = surnameText.getText();
+                String address1 = address1Text.getText();
+                String address2 = address2Text.getText();
+                String pnumber = pnumberText.getText();
+                if(name.isBlank() || surname.isBlank() || address1.isBlank() || address2.isBlank() || pnumber.isBlank()) {
+                    JOptionPane.showMessageDialog(clientsPanel,"The text fields cannot be left empty.");
+                }
+                else {
+                    Object[] client = {name,surname,address1,address2,pnumber};
+                    model.addRow(client);
+                    nameText.setText("");
+                    surnameText.setText("");
+                    address1Text.setText("");
+                    address2Text.setText("");
+                    pnumberText.setText("");
+                }
             }
         });
 
