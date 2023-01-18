@@ -13,6 +13,7 @@ public class Movies extends JFrame {
     private JTextField titleText;
     private JComboBox yearBox;
     private JButton addMovieButton;
+    public static JTable moviesExtended;
 
 
     public Movies() {
@@ -31,6 +32,8 @@ public class Movies extends JFrame {
 
         model.addRow(movie1);
         model.addRow(movie2);
+
+        moviesExtended = moviesTable;
 
         addMovieButton.addActionListener(new ActionListener() {
             @Override

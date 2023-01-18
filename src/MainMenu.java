@@ -40,7 +40,7 @@ public class MainMenu extends JFrame {
         viewRentsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Rentals rentals = new Rentals();
+                Rentals rentals = new Rentals(Movies.moviesExtended,Clients.clientsExtended);
                 rentals.setVisible(true);
             }
         });

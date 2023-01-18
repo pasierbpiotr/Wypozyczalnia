@@ -15,6 +15,7 @@ public class Clients extends JFrame {
     private JTextField address2Text;
     private JTextField pnumberText;
     private JButton addClientButton;
+    public static JTable clientsExtended;
 
     public Clients() {
         super("Clients");
@@ -24,11 +25,6 @@ public class Clients extends JFrame {
 
         String[] ColumnNames = {"Name","Surname","Address 1","Address 2","Phone number"};
 
-        String[][] data = {
-                {"Piotr","Pasierb","Lutoryz 413","36-040 Boguchwala","881655214"},
-                {"Natalia","Rzeszutek","Zaczernie 1051B","35-540 Trzebownisko","882413232"}
-        };
-
         DefaultTableModel model = new DefaultTableModel(ColumnNames,0);
         clientsTable.setModel(model);
 
@@ -37,6 +33,8 @@ public class Clients extends JFrame {
 
         model.addRow(client1);
         model.addRow(client2);
+
+        clientsExtended = clientsTable;
 
 
         addClientButton.addActionListener(new ActionListener() {
