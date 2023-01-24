@@ -30,9 +30,15 @@ public class Clients extends JFrame {
 
         Object[] client1 = {"Piotr","Pasierb","Lutoryz 413","36-040 Boguchwala","881655214"};
         Object[] client2 = {"Natalia","Rzeszutek","Zaczernie 1051B","35-540 Trzebownisko","882413232"};
+        Object[] client3 = {"Krzysztof","Kolumb","Rzeszów Św.Wincentego 34","36-342 Rzeszów","123456789"};
+        Object[] client4 = {"Jerzy","Tajemniczy","Terliczka 51C","33-320 Trzebownisko","234567890"};
+        Object[] client5 = {"Patrycja","Kolumb","Józefów 23","25-344 Józefów","345678901"};
 
         model.addRow(client1);
         model.addRow(client2);
+        model.addRow(client3);
+        model.addRow(client4);
+        model.addRow(client5);
 
         clientsExtension = clientsTable;
 

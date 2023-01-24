@@ -26,11 +26,27 @@ public class Movies extends JFrame {
         DefaultTableModel model = new DefaultTableModel(ColumnNames,0);
         moviesTable.setModel(model);
 
-        Object[] movie1 = {"Casablanca",123};
-        Object[] movie2 = {"Casablanca",123};
+        Object[] movie1 = {"The Dark Knight",2008};
+        Object[] movie2 = {"Inception",2010};
+        Object[] movie3 = {"The Matrix",1999};
+        Object[] movie4 = {"Star Wars: Episode V - The Empire Strikes Back",1980};
+        Object[] movie5 = {"The Lord of The Rings: The Return of the King",2003};
+        Object[] movie6 = {"The Lord of The Rings: The Fellowship of the Ring",2001};
+        Object[] movie7 = {"Seven Samurai",1954};
+        Object[] movie8 = {"Interstellar",2014};
+        Object[] movie9 = {"Back to the Future",1985};
+        Object[] movie10 = {"The Lion King",1994};
 
         model.addRow(movie1);
         model.addRow(movie2);
+        model.addRow(movie3);
+        model.addRow(movie4);
+        model.addRow(movie5);
+        model.addRow(movie6);
+        model.addRow(movie7);
+        model.addRow(movie8);
+        model.addRow(movie9);
+        model.addRow(movie10);
 
         moviesExtension = moviesTable;
 
