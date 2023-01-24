@@ -1,4 +1,3 @@
-import javax.security.auth.DestroyFailedException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -13,7 +12,7 @@ public class Movies extends JFrame {
     private JTextField titleText;
     private JComboBox yearBox;
     private JButton addMovieButton;
-    public static JTable moviesExtended;
+    public static JTable moviesExtension;
 
 
     public Movies() {
@@ -33,7 +32,7 @@ public class Movies extends JFrame {
         model.addRow(movie1);
         model.addRow(movie2);
 
-        moviesExtended = moviesTable;
+        moviesExtension = moviesTable;
 
         addMovieButton.addActionListener(new ActionListener() {
             @Override

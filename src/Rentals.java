@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 //import java.util.Calendar;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Rentals extends JFrame {
@@ -51,31 +52,66 @@ public class Rentals extends JFrame {
         DefaultTableModel model = new DefaultTableModel(ColumnNames,0);
         rentalsTable.setModel(model);
 
-        Object[] rent1 = {"Casablanca - 123","0","19-01-2023"};
-        Object[] rent2 = {"Casablanca - 123","1","20-01-2023"};
+        Object[] rent1 = {"Casablanca - 123","Piotr Pasierb","19-01-2023"};
+        Object[] rent2 = {"Casablanca - 123","Natalia Rzeszutek","20-01-2023"};
 
         model.addRow(rent1);
         model.addRow(rent2);
 
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date todaysDateGet = new Date();
+        String todaysDate = dateFormat.format(todaysDateGet);
+
         addRentalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int movie = movieBox.getSelectedIndex();
-                String title = String.valueOf(moviesTable.getValueAt(movie,0));
-                int client = clientBox.getSelectedIndex();
-                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+                Object movie = movieBox.getSelectedItem();
+
+                Object client = clientBox.getSelectedItem();
+
                 Date rentedUntilGet = dateUntil.getSelectedDate().getTime();
-                Date todaysDateGet = new Date();
                 String rentedUntil = dateFormat.format(rentedUntilGet);
-                String todaysDate = dateFormat.format(todaysDateGet);
-                if(rentedUntil.matches(todaysDate)) {
-                    JOptionPane.showMessageDialog(rentalsPanel,"You cannot rent a movie with return due today");
+
+                if(rentedUntil.compareTo(todaysDate)<=0) {
+                    JOptionPane.showMessageDialog(rentalsPanel,"Incorrect date chosen");
                 }
                 else {
-                    String addDate = dateFormat.format(rentedUntil);
-                    Object[] rent = {title,client,rentedUntil};
+                    String addDate = String.valueOf(rentedUntil);
+                    Object[] rent = {movie,client,rentedUntil};
                     model.addRow(rent);
                 }
+            }
+        });
+
+
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.removeRow(rentalsTable.getSelectedRow());
+            }
+        });
+
+        checkButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int rowCountRentals = rentalsTable.getRowCount();
+                for(int i=0;i<rowCountRentals;i++) {
+                    String dateOfReturn = String.valueOf(rentalsTable.getValueAt(i,2));
+                    String clientInfo = String.valueOf(rentalsTable.getValueAt(i,1));
+                    String movieInfo = String.valueOf(rentalsTable.getValueAt(i,0));
+                    if(todaysDate.compareTo(dateOfReturn)>-2) {
+                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo);
+                    }
+                }
+            }
+        });
+
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }

@@ -15,7 +15,7 @@ public class Clients extends JFrame {
     private JTextField address2Text;
     private JTextField pnumberText;
     private JButton addClientButton;
-    public static JTable clientsExtended;
+    public static JTable clientsExtension;
 
     public Clients() {
         super("Clients");
@@ -34,7 +34,7 @@ public class Clients extends JFrame {
         model.addRow(client1);
         model.addRow(client2);
 
-        clientsExtended = clientsTable;
+        clientsExtension = clientsTable;
 
 
         addClientButton.addActionListener(new ActionListener() {
