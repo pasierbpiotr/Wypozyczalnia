@@ -71,7 +71,7 @@ public class Rentals extends JFrame {
         Object[] rent5 = {"Interstellar - 2014","Natalia Rzeszutek","20-01-2023"};
         Object[] rent6 = {"Interstellar - 2014","Piotr Pasierb","23-01-2023"};
         Object[] rent7 = {"Seven Samurai - 1954","Piotr Pasierb","23-01-2023"};
-        Object[] rent8 = {"The Matrix - 1999","Piotr Pasierb","23-01-2023"};
+        Object[] rent8 = {"The Matrix - 1999","Piotr Pasierb","24-01-2023"};
         Object[] rent9 = {"Back to the Future - 1985","Patrycja Kolumb","26-01-2023"};
 
         modelViewRentals.addRow(rent1);
@@ -99,13 +99,32 @@ public class Rentals extends JFrame {
                 Date rentedUntilGet = dateUntil.getSelectedDate().getTime();
                 String rentedUntil = dateFormat.format(rentedUntilGet);
 
-                if(rentedUntil.compareTo(todaysDate)<=0) {
-                    JOptionPane.showMessageDialog(rentalsPanel,"Incorrect date chosen");
+                Date untilDate;
+                try {
+                    untilDate = new SimpleDateFormat("dd-MM-yyyy").parse(rentedUntil);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                Date dateToday;
+                try {
+                    dateToday = new SimpleDateFormat("dd-MM-yyyy").parse(todaysDate);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                int diff = dateToday.getDate() - untilDate.getDate();
+
+
+                if(diff>=0) {
+                    JOptionPane.showMessageDialog(rentalsPanel,"Incorrect date chosen.\nThe date chosen must be of at least tommorows date.");
                 }
                 else {
 //                    String addDate = String.valueOf(rentedUntil);
                     Object[] rent = {movie,client,rentedUntil};
                     modelViewRentals.addRow(rent);
+                    movieBox.setSelectedIndex(0);
+                    clientBox.setSelectedIndex(0);
                 }
             }
         });
@@ -136,9 +155,22 @@ public class Rentals extends JFrame {
 
                     int diff = dateToday.getDate() - untilDate.getDate();
 
-                    if(diff>0) {
+                    if(diff>1) {
                         JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" days and the fine will be: "+(diff*3)+" zł");
-                    } else if(diff>=-2 && diff<=0) {
+                    }
+                    else if(diff==1) {
+                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" days and the fine will be: "+(diff*3)+" zł");
+                    }
+                    else if(diff==0) {
+                        String pNumber = null;
+                        for (int j = 0; j < rowCountClients; j++) {
+                            if (clientInfo.equals(clientsTable.getValueAt(j, 0) + " " + clientsTable.getValueAt(j, 1))) {
+                                pNumber = String.valueOf(clientsTable.getValueAt(j, 4));
+                            }
+                        }
+                        JOptionPane.showMessageDialog(rentalsPanel, "Client: " + clientInfo + " has to return the movie: " + movieInfo + " today.\nClients phone number to send a reminder: " + pNumber);
+                    }
+                    else if(diff>=-2 && diff<=0) {
                         JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+" in "+Math.abs(diff)+" days");
                     }
                 }

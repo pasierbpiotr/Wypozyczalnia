@@ -56,7 +56,7 @@ public class Movies extends JFrame {
                 String title = titleText.getText();
                 String year = String.valueOf(yearBox.getSelectedIndex()+1930);
                 if(title.isBlank()) {
-                    JOptionPane.showMessageDialog(moviesPanel,"You need to enter a title");
+                    JOptionPane.showMessageDialog(moviesPanel,"You need to enter a title.");
                     }
                 else {
                     Object[] movie = {title,year};
