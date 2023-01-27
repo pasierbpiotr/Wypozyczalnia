@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-//import java.util.Calendar;
 import java.util.Date;
 
 public class Rentals extends JFrame {
@@ -120,7 +119,6 @@ public class Rentals extends JFrame {
                     JOptionPane.showMessageDialog(rentalsPanel,"Incorrect date chosen.\nThe date chosen must be of at least tommorows date.");
                 }
                 else {
-//                    String addDate = String.valueOf(rentedUntil);
                     Object[] rent = {movie,client,rentedUntil};
                     modelViewRentals.addRow(rent);
                     movieBox.setSelectedIndex(0);
@@ -155,19 +153,21 @@ public class Rentals extends JFrame {
 
                     int diff = dateToday.getDate() - untilDate.getDate();
 
+                    String pNumber = null;
+                    for (int j = 0; j < rowCountClients; j++) {
+                        if (clientInfo.equals(clientsTable.getValueAt(j, 0) + " " + clientsTable.getValueAt(j, 1))) {
+                            pNumber = String.valueOf(clientsTable.getValueAt(j, 4));
+                        }
+                    }
+
                     if(diff>1) {
-                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" days and the fine will be: "+(diff*3)+" zł");
+                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" days and the fine will be: "+(diff*3)+" zł\nPhone number to reache them "+pNumber);
                     }
                     else if(diff==1) {
-                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" days and the fine will be: "+(diff*3)+" zł");
+                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" day and the fine will be: "+(diff*3)+" zł\nPhone number to reache them "+pNumber);
                     }
                     else if(diff==0) {
-                        String pNumber = null;
-                        for (int j = 0; j < rowCountClients; j++) {
-                            if (clientInfo.equals(clientsTable.getValueAt(j, 0) + " " + clientsTable.getValueAt(j, 1))) {
-                                pNumber = String.valueOf(clientsTable.getValueAt(j, 4));
-                            }
-                        }
+
                         JOptionPane.showMessageDialog(rentalsPanel, "Client: " + clientInfo + " has to return the movie: " + movieInfo + " today.\nClients phone number to send a reminder: " + pNumber);
                     }
                     else if(diff>=-2 && diff<=0) {
@@ -181,6 +181,28 @@ public class Rentals extends JFrame {
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String dateOfReturn = String.valueOf(rentalsTable.getValueAt(rentalsTable.getSelectedRow(), 2));
+
+                Date untilDate;
+                try {
+                    untilDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateOfReturn);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                Date dateToday;
+                try {
+                    dateToday = new SimpleDateFormat("dd-MM-yyyy").parse(todaysDate);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                int diff = dateToday.getDate() - untilDate.getDate();
+
+                if(diff>=1) {
+                    JOptionPane.showMessageDialog(rentalsPanel,"The client has to pay: "+(diff*3)+" zł for being late");
+                }
+
                 modelViewRentals.removeRow(rentalsTable.getSelectedRow());
             }
         });
