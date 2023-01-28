@@ -63,15 +63,15 @@ public class Rentals extends JFrame {
         rentalsTable.setModel(modelViewRentals);
         viewClientTable.setModel(modelViewClient);
 
-        Object[] rent1 = {"The Dark Knight - 2008","Krzysztof Kolumb","19-01-2023"};
-        Object[] rent2 = {"Inception - 2010","Krzysztof Kolumb","19-01-2023"};
-        Object[] rent3 = {"The Matrix - 1999","Natalia Rzeszutek","20-01-2023"};
-        Object[] rent4 = {"Seven Samurai - 1954","Natalia Rzeszutek","20-01-2023"};
-        Object[] rent5 = {"Interstellar - 2014","Natalia Rzeszutek","20-01-2023"};
-        Object[] rent6 = {"Interstellar - 2014","Piotr Pasierb","23-01-2023"};
-        Object[] rent7 = {"Seven Samurai - 1954","Piotr Pasierb","23-01-2023"};
-        Object[] rent8 = {"The Matrix - 1999","Piotr Pasierb","24-01-2023"};
-        Object[] rent9 = {"Back to the Future - 1985","Patrycja Kolumb","26-01-2023"};
+        Object[] rent1 = {"The Dark Knight - 2008","Krzysztof Kolumb","05-02-2023"};
+        Object[] rent2 = {"Inception - 2010","Krzysztof Kolumb","05-02-2023"};
+        Object[] rent3 = {"The Matrix - 1999","Natalia Rzeszutek","06-02-2023"};
+        Object[] rent4 = {"Seven Samurai - 1954","Natalia Rzeszutek","06-02-2023"};
+        Object[] rent5 = {"Interstellar - 2014","Natalia Rzeszutek","06-02-2023"};
+        Object[] rent6 = {"Interstellar - 2014","Piotr Pasierb","07-02-2023"};
+        Object[] rent7 = {"Seven Samurai - 1954","Piotr Pasierb","07-02-2023"};
+        Object[] rent8 = {"The Matrix - 1999","Piotr Pasierb","07-02-2023"};
+        Object[] rent9 = {"Back to the Future - 1985","Patrycja Kolumb","08-02-2023"};
 
         modelViewRentals.addRow(rent1);
         modelViewRentals.addRow(rent2);
@@ -161,10 +161,10 @@ public class Rentals extends JFrame {
                     }
 
                     if(diff>1) {
-                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" days and the fine will be: "+(diff*3)+" zł\nPhone number to reache them "+pNumber);
+                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" days and the fine will be: "+(diff*3)+" zł\nPhone number to reach them "+pNumber);
                     }
                     else if(diff==1) {
-                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" day and the fine will be: "+(diff*3)+" zł\nPhone number to reache them "+pNumber);
+                        JOptionPane.showMessageDialog(rentalsPanel,"Client: "+clientInfo+" has to return the movie: "+movieInfo+"\nClient is late by "+Math.abs(diff)+" day and the fine will be: "+(diff*3)+" zł\nPhone number to reach them "+pNumber);
                     }
                     else if(diff==0) {
 
